@@ -10,9 +10,30 @@ import SpriteKit
 
 class DotScene: SKScene {
     
-    override func didMove(to view: SKView) {
-        
+    let cameraNode = SKCameraNode()
+    
+    let colors = [SKColor.yellow, SKColor.red, SKColor.blue, SKColor.purple]
+
+    var dots: [SKNode] = []
+    
+  
+    func addDot(point: CGPoint){
+        let dot = SKShapeNode(circleOfRadius: 40)
+        dot.fillColor = .blue
+        dot.position = point
+        dots.append(dot)
+        addChild(dot)
     }
+
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: self)
+        addDot(point: location)
+    }
+        
+    
+   
     
 }
 

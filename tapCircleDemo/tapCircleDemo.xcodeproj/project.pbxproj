@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7B57988224A97AA00C93873 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B57987224A97AA00C93873 /* GameScene.swift */; };
 		A7F0BF7F2236FE94006D3D44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0BF7E2236FE94006D3D44 /* AppDelegate.swift */; };
 		A7F0BF842236FE94006D3D44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F0BF822236FE94006D3D44 /* Main.storyboard */; };
 		A7F0BF862236FE95006D3D44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F0BF852236FE95006D3D44 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A7B57987224A97AA00C93873 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A7F0BF7B2236FE94006D3D44 /* tapCircleDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tapCircleDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F0BF7E2236FE94006D3D44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F0BF832236FE94006D3D44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				A7F0BF7E2236FE94006D3D44 /* AppDelegate.swift */,
 				A7F0BF922236FF74006D3D44 /* DotScene.swift */,
+				A7B57987224A97AA00C93873 /* GameScene.swift */,
 				A7F0BF902236FF26006D3D44 /* TouchDotViewController.swift */,
 				A7F0BF822236FE94006D3D44 /* Main.storyboard */,
 				A7F0BF852236FE95006D3D44 /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			files = (
 				A7F0BF7F2236FE94006D3D44 /* AppDelegate.swift in Sources */,
 				A7F0BF932236FF74006D3D44 /* DotScene.swift in Sources */,
+				A7B57988224A97AA00C93873 /* GameScene.swift in Sources */,
 				A7F0BF912236FF26006D3D44 /* TouchDotViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
