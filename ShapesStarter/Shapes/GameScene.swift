@@ -26,7 +26,10 @@ import SpriteKit
 
 class GameScene: SKScene {
   
- // let cameraNode = SKCameraNode()
+  let scoreLabel = SKLabelNode()
+  var score = 0
+  
+  let cameraNode = SKCameraNode()
   
   let colors = [SKColor.yellow, SKColor.red, SKColor.blue, SKColor.purple]
   
@@ -45,23 +48,24 @@ class GameScene: SKScene {
     player.physicsBody?.velocity.dy = 800.0
   }
   
-//  override func update(_ currentTime: TimeInterval) {
-//
-//    if player.position.y > obstacleSpacing * CGFloat(obstacles.count - 2) {
-//      print("score")
-//      // TODO: Update score
-//      addObstacle()
-//    }
-//
-//    let playerPositionInCamera = cameraNode.convert(player.position, from: self)
-//    if playerPositionInCamera.y > 0 && !cameraNode.hasActions() {
-//      cameraNode.position.y = player.position.y
-//    }
-//
-//    if playerPositionInCamera.y < -size.height/2 {
-//      dieAndRestart()
-//    }
-//  }
+  override func update(_ currentTime: TimeInterval) {
+
+    if player.position.y > obstacleSpacing * CGFloat(obstacles.count - 2) {
+      print("score")
+      score += 1
+      scoreLabel.text = String(score)
+      addObstacle()
+    }
+
+    let playerPositionInCamera = cameraNode.convert(player.position, from: self)
+    if playerPositionInCamera.y > 0 && !cameraNode.hasActions() {
+      cameraNode.position.y = player.position.y
+    }
+
+    if playerPositionInCamera.y < -size.height/2 {
+      dieAndRestart()
+    }
+  }
 
   
   override func didMove(to view: SKView) {
@@ -84,9 +88,15 @@ class GameScene: SKScene {
     
     physicsWorld.contactDelegate = self
     
-    //addChild(cameraNode)
-   //camera = cameraNode
-    //cameraNode.position = CGPoint(x: size.width/2, y: size.height/2)
+    addChild(cameraNode)
+    camera = cameraNode
+    cameraNode.position = CGPoint(x: size.width/2, y: size.height/2)
+    
+    scoreLabel.position = CGPoint(x: -350, y: -900)
+    scoreLabel.fontColor = .white
+    scoreLabel.fontSize = 150
+    scoreLabel.text = String(score)
+    cameraNode.addChild(scoreLabel)
   }
   
   func setupPlayerAndObstacles() {
@@ -105,8 +115,17 @@ class GameScene: SKScene {
   }
   
   func addObstacle() {
-    addCircleObstacle()
+    let choice = Int(arc4random_uniform(2))
+    switch choice {
+    case 0:
+      addCircleObstacle()
+    case 1:
+      addSquareObstacle()
+    default:
+      print("something went wrong")
+    }
   }
+
   
   func dieAndRestart() {
     print("boom")
@@ -121,7 +140,10 @@ class GameScene: SKScene {
     
     setupPlayerAndObstacles()
     
-   // cameraNode.position = CGPoint(x: size.width/2, y: size.height/2)
+    cameraNode.position = CGPoint(x: size.width/2, y: size.height/2)
+    
+    score = 0
+    scoreLabel.text = String(score)
   }
   
   func addCircleObstacle() {
@@ -150,6 +172,18 @@ class GameScene: SKScene {
     
     
     let rotateAction = SKAction.rotate(byAngle: 2.0 * CGFloat(Double.pi), duration: 8.0)
+    obstacle.run(SKAction.repeatForever(rotateAction))
+  }
+  
+  func addSquareObstacle() {
+    let path = UIBezierPath(roundedRect: CGRect(x: -200, y: -200, width: 400, height: 40), cornerRadius: 20)
+    
+    let obstacle = obstacleByDuplicatingPath(path, clockwise: false)
+    obstacles.append(obstacle)
+    obstacle.position = CGPoint(x: size.width/2, y: obstacleSpacing * CGFloat(obstacles.count))
+    addChild(obstacle)
+    
+    let rotateAction = SKAction.rotate(byAngle: -2.0 * CGFloat(Double.pi), duration: 7.0)
     obstacle.run(SKAction.repeatForever(rotateAction))
   }
 
